@@ -1,36 +1,39 @@
 ;;------------------ CUSTOMAZATION ------------------;;
 
-;; Some basics
-;; set start frame position
+;;;;; GUI Frame
+;; frame position
 (set-frame-position (selected-frame) 0 20)
-;; set frame height and width
+;; height and width
 (set-frame-width (selected-frame) 80)
 (set-frame-height (selected-frame) 40)
 ;; bars off
 (tool-bar-mode -1) 
 (menu-bar-mode -1)
 ;; turn off welcome buffer
-(setq inhibit-startup-message t) 
+(setq inhibit-startup-message t)
+
+;;;;; Text Format
 ;; mode line: line & column number
 (column-number-mode t)
-(line-number-mode t) 
+(line-number-mode t)
+;; line numbering
+(global-linum-mode t)
 ;; word wrap
-(global-visual-line-mode t) 
-;; line numbering 
-(global-linum-mode t) 
+(global-visual-line-mode t)
 ;; parentheses matching
-(show-paren-mode t) 
+(show-paren-mode t)
+;; TAB - using 4 spaces
+(setq indent-tabs-mode nil)
+(setq default-tab-width 4)
 
-;; Manage package repositories: +MELPA Stable +Marmalade
+;;;;; Package Management
 (require 'package)
 (add-to-list 'package-archives
              '("melpa-stable" . "http://stable.melpa.org/packages/") )
 (add-to-list 'package-archives
-			 '("marmalade" . "https://marmalade-repo.org/packages/") )
+             '("marmalade" . "https://marmalade-repo.org/packages/") )
 (package-initialize)
-
-;;---------- My Package List
-;; Automatically installation:
+;;----- My Package List
 (when (not (package-installed-p 'auto-complete))
   (package-install 'auto-complete))
 (when (not (package-installed-p 'evil))
@@ -42,7 +45,7 @@
 ;; Specific settings of packages
 ;;----- monokai theme
 (load-theme 'monokai t)
-;;----- Auto-complete
+;;----- auto-complete
 (require 'auto-complete-config)
 (ac-config-default)
 ;;----- ido
