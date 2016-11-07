@@ -1,6 +1,10 @@
 ;;------------------ CUSTOMAZATION ------------------;;
 
-;;;;; GUI Frame
+;;;;; Basics
+;; turn off backup file
+(setq make-backup-files nil)
+
+;;;;; GUI
 ;; frame position
 (set-frame-position (selected-frame) 0 20)
 ;; height and width
@@ -28,10 +32,18 @@
 
 ;;;;; Package Management
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") )
-(add-to-list 'package-archives
-             '("marmalade" . "https://marmalade-repo.org/packages/") )
+
+;; offical archive, reserved
+;(add-to-list 'package-archives
+;             '("melpa-stable" . "http://stable.melpa.org/packages/")
+;             '("marmalade" . "https://marmalade-repo.org/packages/"))
+
+;; ELPA mirror of Emacs-China
+(setq package-archives '(("gnu"   . "http://elpa.zilongshanren.com/gnu/")
+                         ("melpa-stable" . "http://elpa.zilongshanren.com/melpa-stable/")
+;;                         ("melpa" . "http://elpa.zilongshanren.com/melpa/")
+                         ("Marmalade" . " 	http://elpa.zilongshanren.com/marmalade/")))
+
 (package-initialize)
 ;;----- My Package List
 (when (not (package-installed-p 'auto-complete))
