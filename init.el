@@ -27,7 +27,7 @@
 ;; parentheses matching
 (show-paren-mode t)
 ;; TAB - using 4 spaces
-(setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
 
 ;;;;; Package Management
@@ -37,23 +37,25 @@
 ;(add-to-list 'package-archives
 ;             '("melpa-stable" . "http://stable.melpa.org/packages/")
 ;             '("marmalade" . "https://marmalade-repo.org/packages/"))
-
 ;; ELPA mirror of Emacs-China
 (setq package-archives '(("gnu"   . "http://elpa.zilongshanren.com/gnu/")
                          ("melpa-stable" . "http://elpa.zilongshanren.com/melpa-stable/")
 ;;                         ("melpa" . "http://elpa.zilongshanren.com/melpa/")
                          ("Marmalade" . " 	http://elpa.zilongshanren.com/marmalade/")))
-
 (package-initialize)
+
+;; if need, refresh package pool cache 
+(when (not package-archive-contents)
+  (package-refresh-contents))
 ;;----- My Package List
-(when (not (package-installed-p 'auto-complete))
-  (package-install 'auto-complete))
-(when (not (package-installed-p 'evil))
-  (package-install 'evil))
-(when (not (package-installed-p 'monokai-theme))
-  (package-install 'monokai-theme))
-(when (not (package-installed-p 'smex))
-  (package-install 'smex))
+(defvar my-default-packages '(yasnippet
+	                          auto-complete
+                              evil
+                              monokai-theme
+                              smex))
+(dolist (p my-default-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
 ;; Specific settings of packages
 ;;----- monokai theme
 (load-theme 'monokai t)
@@ -67,9 +69,9 @@
 (require 'smex) 
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex) ; make smex triggered by M-x 
+;; MODE OFF by default when start
 ;;----- Evil
 ;(require 'evil) ; this could be omit when package.el used
-;(evil-mode 1)
-;(evil-set-initial-state 'dired-mode 'emacs)
+;;----- yasnippet
 
 ;;------------------ END_CUSTOM ------------------;;
