@@ -71,7 +71,7 @@
 (global-set-key (kbd "M-x") 'smex) ; make smex triggered by M-x 
 ;; MODE OFF by default when start
 ;;----- Evil
-;(require 'evil) ; this could be omit when package.el used
+;(evil-mode 1)
 ;;----- yasnippet
 
 ;;------------------ END_CUSTOM ------------------;;
