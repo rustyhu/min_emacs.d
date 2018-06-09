@@ -9,7 +9,7 @@
 (set-frame-position (selected-frame) 0 20)
 ;; height and width
 (set-frame-width (selected-frame) 82)
-(set-frame-height (selected-frame) 40)
+(set-frame-height (selected-frame) 35)
 ;; bars off
 (tool-bar-mode -1) 
 (menu-bar-mode -1)
