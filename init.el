@@ -70,7 +70,11 @@
 (evil-mode 1)
 
 ;;;;; `customize` interface
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-;(load custom-file)
+(setq custom-file (expand-file-name "auto-custom.el" user-emacs-directory))
+(if (file-exists-p custom-file) (load custom-file t t))
+
+;;;;; my custom config
+(let ((private-custom (expand-file-name "custom.el" user-emacs-directory)))
+    (if (file-exists-p private-custom) (load private-custom t nil)))
 
 ;;------------------ END_CUSTOM ------------------;;
