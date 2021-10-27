@@ -30,33 +30,45 @@
 
 ;;;;; Package Management
 (require 'package)
-;; offical archive, reserved
-;(add-to-list 'package-archives
-;             '("melpa-stable" . "http://stable.melpa.org/packages/")
 ;; ELPA mirror of Emacs-China
-(setq package-archives '(("gnu"   . "https://elpa.emacs-china.org/gnu/")
-                         ("melpa-stable" . "https://elpa.emacs-china.org/melpa-stable/")
-                         ("melpa" . "https://elpa.emacs-china.org/melpa/")))
+(setq package-archives '(; Emacs China
+                         ("GNU ELPA" . "https://elpa.emacs-china.org/gnu/")
+                         ("MELPA Stable" . "https://elpa.emacs-china.org/stable-melpa/")
+                         ("org" . "https://elpa.emacs-china.org/org/")
+                         ;("MELPA" . "https://elpa.emacs-china.org/melpa/")
+
+                         ; USTC
+                         ;("GNU ELPA" . "https://mirrors.ustc.edu.cn/elpa/gnu/")
+                         ;("MELPA Stable" . "https://mirrors.ustc.edu.cn/elpa/melpa-stable/")
+                         ;("org" . "https://mirrors.ustc.edu.cn/elpa/org/")
+                        ))
 (package-initialize)
 
 ;; if need, refresh package pool cache 
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(smex
+(defvar my-packages '(; key binding tool
+                      smex
                       evil
+                      ; themes
                       monokai-theme
-                      ;doom-themes
-                      racket-mode
+                      doom-themes
+                      ; programming
                       auto-complete
-                      yasnippet))
+                      yasnippet
+                      racket-mode
+                      go-mode
+                      lsp-mode
+                      ))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
 
 ;;;;; Settings of packages
-(load-theme 'monokai t)
+;(load-theme 'monokai t)
+(load-theme 'doom-opera t)
 ;; auto-complete
 (require 'auto-complete-config)
 (ac-config-default)
