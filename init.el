@@ -19,9 +19,8 @@
 (setq default-tab-width 4)
 
 ;;;;; GUI
-;; frame position
+;; Default frame position, height and width, can be overridden by custom.el
 (set-frame-position (selected-frame) 0 20)
-;; height and width
 (set-frame-width (selected-frame) 90)
 (set-frame-height (selected-frame) 45)
 ;; bars off
@@ -68,7 +67,7 @@
 
 ;;;;; Settings of packages
 ;(load-theme 'monokai t)
-(load-theme 'doom-opera t)
+(load-theme 'doom-one t)
 ;; auto-complete
 (require 'auto-complete-config)
 (ac-config-default)
